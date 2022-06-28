@@ -1,0 +1,13 @@
+POST http://localhost:9091/books
+Content-Type: application/json
+
+{
+  "author": "Lyra Silverstar",
+  "isbn": "1234567891",
+  "price": 9.9,
+  "title": "Northern Lights"
+}
+
+###
+
+GET http://localhost:9091/books/{{isbn}}
