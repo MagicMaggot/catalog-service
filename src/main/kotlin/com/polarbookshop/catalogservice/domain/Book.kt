@@ -42,5 +42,7 @@ class Book (
   var id: Long? = null,
 
   @field:Version
-  var version: Int = 0
+  var version: Int = 0,
+
+  val publisher: String? = null
 )
