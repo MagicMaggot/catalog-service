@@ -1,5 +1,10 @@
-package com.polarbookshop.catalogservice.domain;
+package com.polarbookshop.catalogservice.domain
 
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.annotation.Version
+import java.time.Instant
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
@@ -25,5 +30,17 @@ class Book (
   @field:Positive(
     message = "The book price must be greater than zero."
   )
-  val price: Double
+  val price: Double,
+
+  @CreatedDate
+  var createdDate: Instant? = null,
+
+  @LastModifiedDate
+  var lastModifiedDate: Instant? = null,
+
+  @field:Id
+  var id: Long? = null,
+
+  @field:Version
+  var version: Int = 0
 )
