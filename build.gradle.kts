@@ -2,6 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val springCloudVersion = "2021.0.3"
 
+val registryUsername: String by project
+val registryToken: String by project
+val registryUrl: String by project
+
 plugins {
     id("org.springframework.boot") version "2.7.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -40,6 +44,19 @@ dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
         mavenBom("org.testcontainers:testcontainers-bom:1.17.3")
+    }
+}
+
+tasks.bootBuildImage {
+    imageName = project.name
+    environment = mapOf("BP_JVM_VERSION" to "17.*")
+
+    docker {
+        publishRegistry {
+            username = registryUsername
+            password = registryToken
+            url = registryUrl
+        }
     }
 }
 
