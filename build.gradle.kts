@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val springCloudVersion = "2021.0.3"
 
-val registryUsername: String by project
-val registryToken: String by project
-val registryUrl: String by project
+//val registryUsername: String by project
+//val registryToken: String by project
+//val registryUrl: String by project
 
 plugins {
     id("org.springframework.boot") version "2.7.1"
@@ -53,9 +53,9 @@ tasks.bootBuildImage {
 
     docker {
         publishRegistry {
-            username = registryUsername
-            password = registryToken
-            url = registryUrl
+            username = project.findProperty("registryUsername").toString()
+            password = project.findProperty("registryToken").toString()
+            url = project.findProperty("registryUrl").toString()
         }
     }
 }
